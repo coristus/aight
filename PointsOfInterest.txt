@@ -1,0 +1,16 @@
+Project Inhoudelijk:
+- Welk format komt data binnen?
+- Welk format moet data eruit?
+
+- Suggesties/Eisen voor back-end algoritme?
+- Integratie met andere systemen?
+- Tot op welke mate moet product flexibel zijn?
+	(denk aan veranderingen in vragenlijsten, mogelijkheid van hertraining)
+
+Tijdplanning:
+- Hoe vaak / Op welke momenten willen we meeten?
+- Moet dit op kantoor of kan dit ook via Skype?- GUI ja/nee?
+
+Manier van afleveren:
+- Class library?
+- Template van laatste rapport acceptabel?
