@@ -5,7 +5,7 @@ Project Inhoudelijk:
 - Suggesties/Eisen voor back-end algoritme?
 - Integratie met andere systemen?
 - Tot op welke mate moet product flexibel zijn?
-	(denk aan veranderingen in vragenlijsten, mogelijkheid van hertraining)
+	(denk aan veranderingen in vragenlijsten, mogelijkheid van hertraining) 
 
 Tijdplanning:
 - Hoe vaak / Op welke momenten willen we meeten?
@@ -14,3 +14,9 @@ Tijdplanning:
 Manier van afleveren:
 - Class library?
 - Template van laatste rapport acceptabel?
+
+Privacy en Ethiek:
+- Hoe borgen we de veiligheid van de data?
+- Hoe wordt deze opgeslagen
+- Wordt deze data geanonymiseerd
+- Wat gebeurd er met de data? (verkoop, overname, bedrijfsbeeindiging?)
