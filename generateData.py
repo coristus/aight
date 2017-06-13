@@ -1,6 +1,7 @@
 import numpy as np
 import decimal
 
+# Clean the datapoint. Replace comma with dot and sets empty points to 0.0
 def clean(elem):
 		if elem == '' or elem == ' ':
 			elem = 0.0
@@ -12,6 +13,8 @@ def clean(elem):
 				elem = -1.0
 		return elem
 
+# Reads data into numpy float array. Splits labels into numpy array.
+# Returns labels and clean numpy array. Assumes fixed point decimal entries
 def getData():
 	CLEANDATAPATH = 'full/cleanDataFull.npy'
 	LABELPATH = 'full/labelsFull.npy'
