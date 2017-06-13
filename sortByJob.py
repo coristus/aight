@@ -14,4 +14,4 @@ jobs = set(data[:,index].flatten())
 # Create a numpy array per job category (ISCO08_1) and save as array
 for job in jobs:
     select = np.where(data[:,index[0][0]] == job)
-    np.save('full/job' + str(job) + '.npy', data[select[0]])
+    np.save('full/job_' + str(job) + '.npy', data[select[0]])
