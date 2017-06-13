@@ -1,6 +1,15 @@
 import numpy as np
 import decimal
 
+CLEANDATAPATH = 'full/cleanDataFull.npy'
+LABELPATH = 'full/labelsFull.npy'
+
+DATAFILE = 'full/RBFP-RDrives-CA dataset DEF.csv'
+DELIMITER = ';'
+
+##
+# clean takes an element, parses it for float castability,
+# and returns the correct float value to be inserted
 def clean(elem):
 		if elem == '' or elem == ' ':
 			elem = 0.0
@@ -12,18 +21,16 @@ def clean(elem):
 				elem = -1.0
 		return elem
 
+##
+# getData tries to load data from meory, if this fails it
+# reparses the raw file and cleans it up.
+# return - list: labels, array: cleanData
 def getData():
-	CLEANDATAPATH = 'full/cleanDataFull.npy'
-	LABELPATH = 'full/labelsFull.npy'
-
 	try:
 		cleanData = np.load(CLEANDATAPATH)
 		labels = np.load(LABELPATH)
 	except IOError:
 		print "One or more files not found, generating new..."
-
-		DATAFILE = 'full/RBFP-RDrives-CA dataset DEF.csv'
-		DELIMITER = ';'
 
 		rawData = np.genfromtxt(DATAFILE, dtype=decimal.Decimal, delimiter = DELIMITER)
 
@@ -39,6 +46,5 @@ def getData():
 				cleanData[i-1,j] = clean(rawData[i,j])
 
 		np.save(CLEANDATAPATH, cleanData)
-
 
 	return labels, cleanData
