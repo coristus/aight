@@ -13,17 +13,26 @@ def clean(elem):
 		return elem
 
 def getData():
-	DATAFILE = 'full/RBFP-RDrives-CA dataset DEF.csv'
-	DELIMITER = ';'
+	CLEANDATAPATH = 'full/cleanDataFull.npy'
 
-	rawData = np.genfromtxt(DATAFILE, dtype=decimal.Decimal, delimiter = DELIMITER)
+	try:
+		cleanData = np.load(CLEANDATAPATH)
+	except IOError:
+		print "File not found, generating new..."
 
-	(dataRows, dataCols) = rawData.shape
+		DATAFILE = 'full/RBFP-RDrives-CA dataset DEF.csv'
+		DELIMITER = ';'
 
-	cleanData = np.empty((dataRows-1, dataCols), float)
+		rawData = np.genfromtxt(DATAFILE, dtype=decimal.Decimal, delimiter = DELIMITER)
 
-	for i in range(1, dataRows):
-		for j in range(0, dataCols):
-			cleanData[i-1,j] = clean(rawData[i,j])
+		(dataRows, dataCols) = rawData.shape
+
+		cleanData = np.empty((dataRows-1, dataCols), float)
+
+		for i in range(1, dataRows):
+			for j in range(0, dataCols):
+				cleanData[i-1,j] = clean(rawData[i,j])
+
+		np.save(CLEANDATAPATH, cleanData)
 
 	return cleanData
