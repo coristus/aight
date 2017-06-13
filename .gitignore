@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Sensitive
+full/
+
 # Distribution / packaging
 .Python
 env/
