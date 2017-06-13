@@ -14,16 +14,21 @@ def clean(elem):
 
 def getData():
 	CLEANDATAPATH = 'full/cleanDataFull.npy'
+	LABELPATH = 'full/labelsFull.npy'
 
 	try:
 		cleanData = np.load(CLEANDATAPATH)
+		labels = np.load(LABELPATH)
 	except IOError:
-		print "File not found, generating new..."
+		print "One or more files not found, generating new..."
 
 		DATAFILE = 'full/RBFP-RDrives-CA dataset DEF.csv'
 		DELIMITER = ';'
 
 		rawData = np.genfromtxt(DATAFILE, dtype=decimal.Decimal, delimiter = DELIMITER)
+
+		labels = rawData[0, :]
+		np.save(LABELPATH, labels)
 
 		(dataRows, dataCols) = rawData.shape
 
@@ -35,4 +40,5 @@ def getData():
 
 		np.save(CLEANDATAPATH, cleanData)
 
-	return cleanData
+
+	return labels, cleanData
