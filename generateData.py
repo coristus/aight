@@ -1,9 +1,6 @@
 import numpy as np
 import decimal
 
-<<<<<<< HEAD
-# Clean the datapoint. Replace comma with dot and sets empty points to 0.0
-=======
 CLEANDATAPATH = 'full/cleanDataFull.npy'
 LABELPATH = 'full/labelsFull.npy'
 
@@ -13,7 +10,6 @@ DELIMITER = ';'
 ##
 # clean takes an element, parses it for float castability,
 # and returns the correct float value to be inserted
->>>>>>> a86cfdc3b9d4e97b99727690ca16770155f97106
 def clean(elem):
 		if elem == '' or elem == ' ':
 			elem = 0.0
@@ -25,15 +21,11 @@ def clean(elem):
 				elem = -1.0
 		return elem
 
-<<<<<<< HEAD
-# Reads data into numpy float array. Splits labels into numpy array.
-# Returns labels and clean numpy array. Assumes fixed point decimal entries
-=======
-##
+##s
+# Assumes fixed point decimal entries
 # getData tries to load data from meory, if this fails it
 # reparses the raw file and cleans it up.
 # return - list: labels, array: cleanData
->>>>>>> a86cfdc3b9d4e97b99727690ca16770155f97106
 def getData():
 	try:
 		cleanData = np.load(CLEANDATAPATH)
