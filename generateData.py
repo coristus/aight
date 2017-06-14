@@ -12,7 +12,7 @@ DELIMITER = ';'
 # and returns the correct float value to be inserted
 def clean(elem):
 		if elem == '' or elem == ' ':
-			elem = 0.0
+			elem = -1.0
 		else:
 			try:
 				elem = float(elem.replace(",","."))
@@ -31,7 +31,7 @@ def getData():
 		cleanData = np.load(CLEANDATAPATH)
 		labels = np.load(LABELPATH)
 	except IOError:
-		print "One or more files not found, generating new..."
+		# print "One or more files not found, generating new..."
 
 		rawData = np.genfromtxt(DATAFILE, dtype=decimal.Decimal, delimiter = DELIMITER)
 

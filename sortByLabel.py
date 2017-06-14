@@ -11,6 +11,7 @@ def splitByLabel(label, labels, data):
     returnArrayLabels = []
     index = np.where(labels == label)
     categories = set(data[:,index].flatten())
+    categories.remove(-1.0)
 
     # Create a numpy array per job category (ISCO08_1) and save as array
     for category in categories:
