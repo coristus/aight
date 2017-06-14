@@ -36,9 +36,6 @@ def getData():
 
 		rawData = np.genfromtxt(DATAFILE, dtype=decimal.Decimal, delimiter = DELIMITER)
 
-		if sub:
-			rawData = rawData[1:,11:-1]
-
 		labels = rawData[0, :]
 		np.save(LABELPATH, labels)
 
