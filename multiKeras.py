@@ -69,8 +69,8 @@ def class10_model():
         moving_variance_initializer='ones', beta_regularizer=None,
         gamma_regularizer=None, beta_constraint=None, gamma_constraint=None))
     #
-    # model.add(Dense(96, activation='sigmoid'))
-    # model.add(Dropout(0.2, noise_shape=None, seed=None))
+    model.add(Dense(96, activation='sigmoid'))
+    model.add(Dropout(0.2, noise_shape=None, seed=None))
     # model.add(Dense(64, activation='sigmoid'))
     # model.add(Dropout(0.2, noise_shape=None, seed=None))
     # model.add(Dense(32, activation='sigmoid'))
