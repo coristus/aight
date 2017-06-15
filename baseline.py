@@ -22,10 +22,11 @@ Y_bin = mlb.fit_transform(y)
 print X.shape
 print y.shape
 
-algorithm = mlp(solver='adam', alpha=1e-8, hidden_layer_sizes=(64, 64), random_state=1)
+# algorithm = mlp(solver='adam', alpha=1e-8, hidden_layer_sizes=(64, 64), random_state=1)
 
 results = OneVsRestClassifier(LinearSVC(random_state=0),n_jobs=-1).fit(X, y).predict(X)
 # results = OneVsRestClassifier(algorithm).fit(X, Y_bin).predict(X)
-
+failed = np.count_nonzero(np.array(results)-y.T)
+print 'percentage classified right = ' + str((1. -failed/float(len(results))) *100)
 
 # all_labels = mlb.inverse_transform(results)
