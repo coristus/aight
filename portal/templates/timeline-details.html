@@ -1,0 +1,515 @@
+{% if 'competentie1' in event.attributes %}
+    <small>Over een {{event.attributes['soortSituatie']|humanize| lower}}: {{event.attributes['overSituatie']}}</small>
+    <p>
+        {% for t in range(0, event.attributes.overall|int)%}
+            <i class="fa fa-star fa-2x" style="color: #f4dc42" aria-hidden="true"></i>
+        {% endfor %}
+    </p>
+    <blockquote>&ldquo;{{event.attributes['verdereFeedback']}}&rdquo;</blockquote>
+    {% if 'competentie1' in event.attributes %}
+        {% if event.attributes['competentie1']|int > 1 %}
+        <span class="label label-success">Competentie 1</span>
+        {% endif %}
+        {% if event.attributes['competentie1']|int < 0 %}
+        <span class="label label-danger">Competentie 1</span>
+        {% endif %}
+    {% endif %}
+    {% if 'competentie2' in event.attributes %}
+        {% if event.attributes['competentie2']|int  > 1 %}
+        <span class="label label-success">Competentie 2</span>
+        {% endif %}
+        {% if event.attributes['competentie2']|int  < 0 %}
+        <span class="label label-danger">Competentie 2</span>
+        {% endif %}
+    {% endif %}
+    {% if 'competentie3' in event.attributes %}
+        {% if event.attributes['competentie3']|int  > 1 %}
+        <span class="label label-success">Competentie 3</span>
+        {% endif %}
+        {% if event.attributes['competentie3']|int  < 0 %}
+        <span class="label label-danger">Competentie 3</span>
+        {% endif %}
+    {% endif %}
+    {% if 'competentie4' in event.attributes %}
+        {% if event.attributes['competentie4']|int  > 1 %}
+        <span class="label label-success">Competentie 4</span>
+        {% endif %}
+        {% if event.attributes['competentie4']|int  < 0 %}
+        <span class="label label-danger">Competentie 4</span>
+        {% endif %}
+    {% endif %}
+<!-- 4 conditionele groene badges, 4 conditionele rode badges -->
+{% endif %}
+{% if 'oordeelRecruiter' in event.attributes %}
+<blockquote>Oordeel recruiter: &ldquo; {{event.attributes['oordeelRecruiter']}}&rdquo;</blockquote>
+{% endif %}
+
+
+
+{% if 'functie' in event.attributes %}
+<p><span class="label label-success"><strong>Functie:</strong> {{event.attributes['functie']}}</span></p>
+{% endif %}
+
+<!--  <table class="table">
+<tbody>
+{% for key in event.attributes %}
+{% if key != 'functie' and key != 'feedback' %}
+<tr><th>{{key|humanize}}</th><td>{{event.attributes[key]}}</td></tr>
+{% endif %}
+{% endfor %}
+</tbody>
+</table> -->
+{% if 'voornaam' in event.attributes or 'functieschaal' in event.attributes or event.event_type == 'Feedbackverzoek' %}
+<table class="table">
+    <tbody>
+        {% for key, value in event.attributes.iteritems() %}
+        <tr>
+            <th>{{key|humanize}}</th>
+            <td>{{value}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %} {% if 'N' in event.attributes %}
+
+<div class="panel-group" id="accordion{{eventindex}}" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne{{eventindex}}">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion{{eventindex}}" data-target="#collapseN{{eventindex}}" aria-expanded="true" aria-controls="collapseN{{eventindex}}">
+                    <row class="clearfix">
+
+                        <div class="col-md-3">
+                            <b>iNstabiliteit</b>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress" style="margin-bottom: 0px;">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.attributes.N}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.N}}%; background-color:#A21619;">
+                                    {{event.attributes.N}}
+                                </div>
+                            </div>
+                        </div>
+                    </row>
+                </a>
+            </h4>
+        </div>
+
+        <div id="collapseN{{eventindex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne{{eventindex}}">
+            <div class="panel-body">
+                <row>
+                    <div class="col-md-3" align="right">
+                        Gevoeligheid
+                    </div>
+                    <div class="col-md-9">
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.attributes.TTN1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTN1}}%; background-color:#A21619;">
+                                {{event.attributes.TTN1}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Intensiteit
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.attributes.TTN2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTN2}}%; background-color:#A21619;">
+                                {{event.attributes.TTN2}}
+
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Interpretatie
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.attributes.TTN3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTN3}}%; background-color:#A21619;">
+                                {{event.attributes.TTN3}}
+
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Hersteltijd
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.attributes.TTN4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTN4}}%; background-color:#A21619;">
+                                {{event.attributes.TTN4}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Terughoudendheid
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.attributes.TTN5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTN5}}%; background-color:#A21619;">
+                                {{event.attributes.TTN5}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion{{eventindex}}" href="#collapseE{{eventindex}}" aria-expanded="true" aria-controls="collapseOne{{eventindex}}">
+                    <row class="clearfix">
+
+                        <div class="col-md-3">
+                            <b>Extravertie</b>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress" style="margin-bottom: 0px;">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{event.attributes.E}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.E}}%; background-color:#C9C909;">
+                                    {{event.attributes.E}}
+                                </div>
+                            </div>
+                        </div>
+                    </row>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseE{{eventindex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <row>
+                    <div class="col-md-3" align="right">
+                        Enthousiasme
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{event.attributes.TTE1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTE1}}%; background-color:#C9C909;">
+                                {{event.attributes.TTE1}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Sociabiliteit
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{event.attributes.TTE2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTE2}}%; background-color:#C9C909;">
+                                {{event.attributes.TTE2}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Energie
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{event.attributes.TTE3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTE3}}%; background-color:#C9C909;">
+                                {{event.attributes.TTE3}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Leiding nemen
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{event.attributes.TTE4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTE4}}%; background-color:#C9C909;">
+                                {{event.attributes.TTE4}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Directheid
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{event.attributes.TTE5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTE5}}%; background-color:#C9C909;">
+                                {{event.attributes.TTE5}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion{{eventindex}}" href="#collapseO{{eventindex}}" aria-expanded="true" aria-controls="collapseOne{{eventindex}}">
+                    <row class="clearfix">
+                        <div class="col-md-3">
+                            <b>Openstaan</b>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress" style="margin-bottom: 0px;">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{event.attributes.O}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.O}}%; background-color:#DA9F43;">
+                                    {{event.attributes.O}}
+                                </div>
+                            </div>
+                        </div>
+                    </row>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseO{{eventindex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <row>
+                    <div class="col-md-3" align="right">
+                        Verbeelding
+                    </div>
+                    <div class="col-md-9">
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{event.attributes.TTO1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTO1}}%; background-color:#DA9F43;">
+                                {{event.attributes.TTO1}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Complexiteit
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{event.attributes.TTO2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTO2}}%; background-color:#DA9F43;">
+                                {{event.attributes.TTO2}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Veranderingen
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{event.attributes.TTO3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTO3}}%; background-color:#DA9F43;">
+                                {{event.attributes.TTO3}}
+
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Autonomie
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{event.attributes.TTO4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTO4}}%; background-color:#DA9F43;">
+                                {{event.attributes.TTO4}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion{{eventindex}}" href="#collapseA{{eventindex}}" aria-expanded="true" aria-controls="collapseOne{{eventindex}}">
+                    <row class="clearfix">
+
+                        <div class="col-md-3">
+                            <b>Aanpassen</b>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress" style="margin-bottom: 0px;">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{event.attributes.A}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.A}}%; background-color:#0078A2;">
+                                    {{event.attributes.A}}
+                                </div>
+                            </div>
+                        </div>
+                    </row>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseA{{eventindex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <row>
+                    <div class="col-md-3" align="right">
+                        Service
+                    </div>
+                    <div class="col-md-9">
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{event.attributes.TTA1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTA1}}%; background-color:#0078A2;">
+                                {{event.attributes.TTA1}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Overeenstemming
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{event.attributes.TTA2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTA2}}%; background-color:#0078A2;">
+                                {{event.attributes.TTA2}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Erkenning
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{event.attributes.TTA3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTA3}}%; background-color:#0078A2;">
+                                {{event.attributes.TTA3}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Vertrouwen
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{event.attributes.TTA4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTA4}}%; background-color:#0078A2;">
+                                {{event.attributes.TTA4}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Tact
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{event.attributes.TTA5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTA5}}%; background-color:#0078A2;">
+                                {{event.attributes.TTA5}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion{{eventindex}}" href="#collapseC{{eventindex}}" aria-expanded="true" aria-controls="collapseOne{{eventindex}}">
+                    <row class="clearfix">
+
+                        <div class="col-md-3">
+                            <b>Conscientieusheid</b>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress" style="margin-bottom: 0px;">
+                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{event.attributes.C}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.C}}%; background-color:#723773;">
+                                    {{event.attributes.C}}
+                                </div>
+                            </div>
+                        </div>
+                    </row>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseC{{eventindex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <row>
+                    <div class="col-md-3" align="right">
+                        Perfectionisme
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{event.attributes.TTC1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTC1}}%; background-color:#723773;">
+                                {{event.attributes.TTC1}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Organisatie
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{event.attributes.TTC2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTC2}}%; background-color:#723773;">
+                                {{event.attributes.TTC2}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Gedrevenheid
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{event.attributes.TTC3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTC3}}%; background-color:#723773;">
+                                {{event.attributes.TTC3}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Concentratie
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{event.attributes.TTC4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTC4}}%; background-color:#723773;">
+                                {{event.attributes.TTC4}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-md-3" align="right">
+                        Methodisch werken
+                    </div>
+                    <div class="col-md-9">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{event.attributes.TTC5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.attributes.TTC5}}%; background-color:#723773;">
+                                {{event.attributes.TTC5}}
+                            </div>
+                        </div>
+                    </div>
+                </row>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %} {% if 1 == 2 %}
+<table class="table">
+    <tbody>
+        <tr>
+            {% for key in event.attributes %}
+
+            <th>{{key|humanize}}</th>
+
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for key in event.attributes %} {% if key != 'functie' and key != 'feedback' %}
+            <td>{{event.attributes[key]}}</td>
+            {% endif %} {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% endif %}

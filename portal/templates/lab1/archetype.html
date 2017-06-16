@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-tag" aria-hidden="true"></i> &nbsp; Persoonlijkheid Type</h3>
+    </div>
+
+    <div class="panel-body">
+        <center>
+            {% if not 'prediction' in state %}
+            <p>Voor deze medewerker is er geen voorspelling beschikbaar.</p>
+            {% endif %} {% if 'prediction' in state %}
+            <h2 style="margin-top: 0px;">{{state.prediction}}</h2>
+            {% endif %}
+        </center>
+    </div>
+</div>

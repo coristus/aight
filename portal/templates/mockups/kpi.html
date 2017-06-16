@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-table" aria-hidden="true"></i>
+            &nbsp; KPI's</h3>
+    </div>
+
+    <table class="table">
+        {% for i in state.kpi %}
+        {% if i != "id" and not i.endswith("% van target") %}
+        <tr><td>{{i}}</td><td>{{state.kpi[i]}}</td>
+          {% if i+" % van target" in state.kpi %}
+          {% set percentage = state.kpi[i+" % van target"] %}
+          <td>
+            {% if percentage|int >= 100 %}
+            <span style="color: green">
+            {%endif%}
+            {% if percentage|int < 100 %}
+            <span style="color: red">
+            {%endif%}
+            {{percentage}} %</span></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>

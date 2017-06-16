@@ -1,0 +1,75 @@
+{% if 'prediction' in state %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-tag" aria-hidden="true"></i> &nbsp; Persoonlijkheid Type Radar</h3>
+    </div>
+
+    <div class="panel-body">
+        <center>
+            {% if not 'prediction' in state %}
+            <p>Voor deze medewerker is er geen voorspelling beschikbaar.</p>
+            {% endif %} {% if 'prediction' in state %}
+            <!-- Radar Chart -->
+            <div class="chart-demo">
+                <canvas id="radarChart" width="900" height="600"></canvas>
+                <div id="legendDiv"></div>
+            </div>
+            {% endif %}
+        </center>
+    </div>
+</div>
+
+{% if 'predictedPersonality' in state %}
+<script type="text/javascript">
+    var data = {
+        labels: [
+            'Gevoeligheid', 'Intensiteit', 'Interpretatie', 'Hersteltijd',
+            'Terughoudendheid', 'Enthousiasme', 'Sociabiliteit', 'Energie', 'Leiding nemen', 'Directheid', 'Verbeelding', 'Complexiteit',
+            'Veranderingen', 'Autonomie', 'Service', 'Overeenstemming', 'Erkenning', 'Vertrouwen', 'Tact', 'Perfectionisme', 'Organisatie',
+            'Gedrevenheid', 'Concentratie', 'Methodisch werken'
+        ],
+        datasets: [
+            {
+                label: "{{topics[topics|length-1].topic}}",
+                backgroundColor: "rgba(255,99,132,0.1)",
+                borderColor: "rgba(255,99,132,1)",
+                pointBackgroundColor: "rgba(255,99,132,1)",
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgba(255,99,132,1)",
+                data: {{state.personality}}
+            },
+            {
+                label: "{{state.prediction}} - marge",
+                backgroundColor: "rgba(255,255,255,0.6)",
+                borderColor: "rgba(179,181,198,1)",
+                pointBackgroundColor: "rgba(179,181,198,1)",
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgba(179,181,198,1)",
+                data: {{state.predictedPersonality.min}}
+            },
+            {
+                label: "{{state.prediction}} + marge",
+                backgroundColor: "rgba(255,255,255,0.6)",
+                borderColor: "rgba(179,181,198,1)",
+                pointBackgroundColor: "rgba(179,181,198,1)",
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgba(179,181,198,1)",
+                data: {{state.predictedPersonality.max}}
+            }
+        ]
+    };
+    //Get the context of the Radar Chart canvas element we want to select
+    var ctx = document.getElementById("radarChart").getContext("2d");
+
+    var myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: data,
+        options: {}
+    });
+</script>
+{% endif %}
+{% endif %}

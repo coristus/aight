@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+            &nbsp; Ontwikkelbare competenties</h3>
+    </div>
+    {% if not 'prediction' in state %}
+        <div class="panel-body">
+            <center>
+                <p>Voor deze medewerker is er geen voorspelling beschikbaar.</p>
+            </center>
+        </div>
+    {% endif %}
+
+    {% if 'prediction' in state %}
+        <table class="table">
+            <tbody>
+                {% for key in state.prediction %}
+                    <tr>
+                        <td>
+                            <strong>{{key}}</strong>
+                        </td>
+                        {% if state.prediction[key] == 1 %}
+                            <td>vraagt erg veel inspanning</td>
+                        {% endif %}
+                        {% if state.prediction[key] == 2 %}
+                            <td>vraagt nogal wat inspanning</td>
+                        {% endif %}
+                        {% if state.prediction[key] == 3 %}
+                            <td>vraagt enige inspanning</td>
+                        {% endif %}
+                        {% if state.prediction[key] == 4 %}
+                            <td>tamelijk gemakkelijk</td>
+                        {% endif %}
+                        {% if state.prediction[key] == 5 %}
+                            <td>erg gemakkelijk</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
