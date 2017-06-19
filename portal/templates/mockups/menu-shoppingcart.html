@@ -1,0 +1,43 @@
+<li>
+    <a href="/?clear" class="dropdown-toggle" data-toggle="dropdown">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i> Bestellingen
+      {% if state.shoppingcart | length > 0 %}
+      <span class="badge">{{state.shoppingcart|length}}</span>
+      {% endif %}
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <div style="padding: 10px"><h4>Bestellingen</h4></div>
+      {% if state.shoppingcart | length > 0 %}
+      {% for orderline in state.shoppingcart %}
+        <li><a href="#">{{orderline.product}} voor {{orderline.subject}}</a></li>
+      {% endfor %}
+      <div style="padding: 10px"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bestelmodal">Bestellen</button></div>
+      {% else %}
+        <li><a href="#">Er zijn nog geen bestellingen geplaatst</a></li>
+      {% endif %}
+    </ul>
+</li>
+<div class="modal fade" id="bestelmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Bestelling plaatsen</h4>
+            </div>
+            <div class="modal-body">
+            <p>De door u aangevraagde tests en analyses worden bij de juiste medewerkers uitgezet.</p>
+            <ul>
+            {% for orderline in state.shoppingcart %}
+              <li><a href="#">{{orderline.product}} voor {{orderline.subject}}</a></li>
+            {% endfor %}
+          </ul>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="menu-shoppingcart?bestellen=1">Bestelling plaatsen</a>
+            </div>
+        </div>
+    </div>
+</div>

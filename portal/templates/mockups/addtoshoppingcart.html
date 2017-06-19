@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            &nbsp; Vervolgstappen</h3>
+    </div>
+    {% if topic.kind == "user" and topic.N == "" %}
+        <a href="#" class="list-group-item clearfix">
+            <button type="button" class="btn btn-primary pull-right">
+                <span class="fa fa-cart-plus" aria-hidden="true"></span>
+            </button>
+            <h4 class="list-group-item-heading">Persoonlijkheids Test</h4>
+            <p class="list-group-item-text">Krijg inzicht in de persoonlijkheid van de medewerker en de daarbij te verwachten competenties.</p>
+        </a>
+    {% endif %}
+    {% if topic.kind == "user" %}
+        <a href="menu-shoppingcart?subject={{topic.topic}}&product=Reflector Test" class="list-group-item clearfix">
+            <button type="button" class="btn btn-primary pull-right">
+                <span class="fa fa-cart-plus" aria-hidden="true"></span>
+            </button>
+            <h4 class="list-group-item-heading">Reflector Test</h4>
+            <p class="list-group-item-text">Verzamel gedetailleerde 360&deg; feedback over de gewenste competenties.</p>
+        </a>
+    {% endif %}
+    {% if topic.kind == "user"%}
+        <a href="menu-shoppingcart?subject={{topic.topic}}&product=Leergang Persoonlijke Effectiviteit" class="list-group-item ">
+            <button type="button" class="btn btn-primary pull-right">
+                <span class="fa fa-cart-plus" aria-hidden="true"></span>
+            </button>
+            <h4 class="list-group-item-heading">Leergang Persoonlijke effectiviteit</h4>
+            <p class="list-group-item-text">Gegeven het profiel van deze medewerker zou de leergang persoonlijke effectiviteit ervoor kunnen zorgen dat de medewerker in meer stuaties inzetbaar is.</p>
+        </a>
+    {% endif %}
+    {% if topic.kind == "users" %}
+        <a href="menu-shoppingcart?subject={{topic.topic}}&product=Talent Map" class="list-group-item ">
+            <button type="button" class="btn btn-primary pull-right">
+                <span class="fa fa-cart-plus" aria-hidden="true"></span>
+            </button>
+            <h4 class="list-group-item-heading">TalentMap Team Analyse</h4>
+            <p class="list-group-item-text">Laat een TalentMap Team Analyse maken van dit Team.</p>
+          <br/>  <p>
+                <strong>Let op!</strong>
+                Daarvoor dient van de teamleden een Reflector test te worden afgenomen.
+            </p>
+        </a>
+    {% endif %}
+</div>

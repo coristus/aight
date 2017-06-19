@@ -1,0 +1,444 @@
+{% if 'persoonlijkheid' in state %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            &nbsp; Persoonlijkheid</h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseN" aria-expanded="true" aria-controls="collapseOne">
+                            <row class="clearfix">
+
+                                <div class="col-md-3">
+                                    <b>iNstabiliteit</b>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress" style="margin-bottom: 0px;">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{state.persoonlijkheid.N}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.N}}%; background-color:#A21619;">
+                                            {{state.persoonlijkheid.N}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </row>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseN" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Gevoeligheid
+                            </div>
+                            <div class="col-md-9">
+
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTN1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTN1}}%; background-color:#A21619;">
+                                        {{state.persoonlijkheid.TTN1}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Intensiteit
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTN2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTN2}}%; background-color:#A21619;">
+                                        {{state.persoonlijkheid.TTN2}}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Interpretatie
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTN3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTN3}}%; background-color:#A21619;">
+                                        {{state.persoonlijkheid.TTN3}}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Hersteltijd
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTN4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTN4}}%; background-color:#A21619;">
+                                        {{state.persoonlijkheid.TTN4}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Terughoudendheid
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTN5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTN5}}%; background-color:#A21619;">
+                                        {{state.persoonlijkheid.TTN5}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseE" aria-expanded="true" aria-controls="collapseOne">
+                            <row class="clearfix">
+
+                                <div class="col-md-3">
+                                    <b>Extravertie</b>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress" style="margin-bottom: 0px;">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{state.persoonlijkheid.E}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.E}}%; background-color:#C9C909;">
+                                            {{state.persoonlijkheid.E}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </row>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseE" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Enthousiasme
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTE1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTE1}}%; background-color:#C9C909;">
+                                        {{state.persoonlijkheid.TTE1}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Sociabiliteit
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTE2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTE2}}%; background-color:#C9C909;">
+                                        {{state.persoonlijkheid.TTE2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Energie
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTE3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTE3}}%; background-color:#C9C909;">
+                                        {{state.persoonlijkheid.TTE3}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Leiding nemen
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTE4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTE4}}%; background-color:#C9C909;">
+                                        {{state.persoonlijkheid.TTE4}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Directheid
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTE5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTE5}}%; background-color:#C9C909;">
+                                        {{state.persoonlijkheid.TTE5}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseO" aria-expanded="true" aria-controls="collapseOne">
+                            <row class="clearfix">
+                                <div class="col-md-3">
+                                    <b>Openstaan</b>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress" style="margin-bottom: 0px;">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{state.persoonlijkheid.O}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.O}}%; background-color:#DA9F43;">
+                                            {{state.persoonlijkheid.O}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </row>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseO" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Verbeelding
+                            </div>
+                            <div class="col-md-9">
+
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTO1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTO1}}%; background-color:#DA9F43;">
+                                        {{state.persoonlijkheid.TTO1}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Complexiteit
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTO2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTO2}}%; background-color:#DA9F43;">
+                                        {{state.persoonlijkheid.TTO2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Veranderingen
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTO3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTO3}}%; background-color:#DA9F43;">
+                                        {{state.persoonlijkheid.TTO3}}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Autonomie
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTO4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTO4}}%; background-color:#DA9F43;">
+                                        {{state.persoonlijkheid.TTO4}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseA" aria-expanded="true" aria-controls="collapseOne">
+                            <row class="clearfix">
+
+                                <div class="col-md-3">
+                                    <b>Aanpassen</b>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress" style="margin-bottom: 0px;">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{state.persoonlijkheid.A}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.A}}%; background-color:#0078A2;">
+                                            {{state.persoonlijkheid.A}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </row>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseA" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Service
+                            </div>
+                            <div class="col-md-9">
+
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTA1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTA1}}%; background-color:#0078A2;">
+                                        {{state.persoonlijkheid.TTA1}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Overeenstemming
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTA2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTA2}}%; background-color:#0078A2;">
+                                        {{state.persoonlijkheid.TTA2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Erkenning
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTA3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTA3}}%; background-color:#0078A2;">
+                                        {{state.persoonlijkheid.TTA3}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Vertrouwen
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTA4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTA4}}%; background-color:#0078A2;">
+                                        {{state.persoonlijkheid.TTA4}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Tact
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTA5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTA5}}%; background-color:#0078A2;">
+                                        {{state.persoonlijkheid.TTA5}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseC" aria-expanded="true" aria-controls="collapseOne">
+                            <row class="clearfix">
+
+                                <div class="col-md-3">
+                                    <b>Conscientieusheid</b>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress" style="margin-bottom: 0px;">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{state.persoonlijkheid.C}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.C}}%; background-color:#723773;">
+                                            {{state.persoonlijkheid.C}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </row>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseC" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Perfectionisme
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTC1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTC1}}%; background-color:#723773;">
+                                        {{state.persoonlijkheid.TTC1}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Organisatie
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTC2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTC2}}%; background-color:#723773;">
+                                        {{state.persoonlijkheid.TTC2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Gedrevenheid
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTC3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTC3}}%; background-color:#723773;">
+                                        {{state.persoonlijkheid.TTC3}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Concentratie
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTC4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTC4}}%; background-color:#723773;">
+                                        {{state.persoonlijkheid.TTC4}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-3" align="right">
+                                Methodisch werken
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{state.persoonlijkheid.TTC5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{state.persoonlijkheid.TTC5}}%; background-color:#723773;">
+                                        {{state.persoonlijkheid.TTC5}}
+                                    </div>
+                                </div>
+                            </div>
+                        </row>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if not 'persoonlijkheid' in state %}
+        <center>
+            <p>Voor deze medewerker is er geen voorspelling beschikbaar.</p>
+        </center>
+        {% endif %}
+    </div>
+</div>
+<script>
+    $('.collapse').on('shown.bs.collapse', function() {
+        $(this).parent().find(".fa-chevron-down").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+    }).on('hidden.bs.collapse', function() {
+        $(this).parent().find(".fa-chevron-up").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+    });
+</script>
+{% endif %}

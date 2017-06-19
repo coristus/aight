@@ -1,0 +1,36 @@
+{% if 'persoonlijkheid' in state %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-table" aria-hidden="true"></i> &nbsp; Persoonlijkheid</h3>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Eigenschap</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td>iNstabiliteit</td>
+            <td>{{state.persoonlijkheid.N}}</td>
+        </tr>
+        <tr>
+            <td>Extraversie</td>
+            <td>{{state.persoonlijkheid.E}}</td>
+        </tr>
+        <tr>
+            <td>Openstaan</td>
+            <td>{{state.persoonlijkheid.O}}</td>
+        </tr>
+        <tr>
+            <td>Aanpassen</td>
+            <td>{{state.persoonlijkheid.A}}</td>
+        </tr>
+        <tr>
+            <td>Conscientieusheid</td>
+            <td>{{state.persoonlijkheid.C}}</td>
+        </tr>
+
+    </table>
+</div>
+{% endif %}

@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-user" aria-hidden="true"></i> &nbsp; Team Medewerkers</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Medewerker</th>
+            <th>iNstabiliteit</th>
+            <th>Extraversie</th>
+            <th>Openstaan</th>
+            <th>Aanpassen</th>
+            <th>Conscientieusheid</th>
+        </tr>
+        {% for mdw in state.medewerkers %}
+        <tr>
+            <td><a href="/panel/teammedewerkers-filter?id={{mdw._id}}">{{ mdw['attributes']['naam'] }}</a></td>
+            <td>{{mdw['attributes']['N']}}</td>
+            <td>{{mdw['attributes']['E']}}</td>
+            <td>{{mdw['attributes']['O']}}</td>
+            <td>{{mdw['attributes']['A']}}</td>
+            <td>{{mdw['attributes']['C']}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
