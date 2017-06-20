@@ -7,8 +7,8 @@ from pymongo.errors import DuplicateKeyError
 
 def main():
     # Connect to the DB
-    MONGO_ADDRESS = ''
-    DB_NAME = ''
+    MONGO_ADDRESS = 'mongodb://testuser:testpassword@ds129342.mlab.com:29342/picompany_team2db'
+    DB_NAME = 'picompany_team2db'
     collection  = MongoClient(MONGO_ADDRESS)[DB_NAME].users
     context_collection  = MongoClient(MONGO_ADDRESS)[DB_NAME].contexts
 
