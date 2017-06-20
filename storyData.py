@@ -80,10 +80,30 @@ def fillStoryIq(label, labels, data):
 
 
 # Assumes an array of for non-categorical columns complete numpy arrays.
-#
+# Creates array for each category datapoints amount, with filled in category
+# generates data with normal distribution of known points
+# returns an array of numpy arrays per category with generated to #datapoints
 def categoryDataMaker(label, labels, array, datapoints):
+    makerArray = []
     for cat in array:
-        print cat.shape
+        if cat.shape[0] < datapoints:
+            rowsize = cat.shape[1]
+            labelpos = np.where(labels == label)
+            labelcat = cat[0,labelpos[0][0]]
+            newcat = np.zeros((datapoints, cat.shape[1]))
+            newcat.fill(-1)
+            newcat[0:cat.shape[0],:] = cat
+            newcat[:,labelpos[0][0]] = labelcat
+            mus = cat[:,11:].mean()
+            sigmas = cat[:,11:].std()
+            for i in range(cat.shape[0], datapoints - cat.shape[0]):
+                newRow = np.random.normal(mus, sigmas, rowsize)
+                newcat[i,11:] = newRow
+        else:
+            newcat = cat[:100,:]
+        makerArray.append(newcat)
+    return np.array(makerArray)
+
 
 ## NEEDS DEBUG
 # Inputs: Target, labelset and dataset. Returns array with dimension size of the
