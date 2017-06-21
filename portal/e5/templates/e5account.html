@@ -1,0 +1,73 @@
+{%extends "e5base.html"%}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col-md-9">
+          <ol class="breadcrumb">
+              <li><a href="/?clear">Home</a></li>
+              <li class="active">Account instellingen</li>
+          </ol>
+          <div class="page-header">
+              <h1>
+                  <i class="fa fa-cogs" aria-hidden="true"></i> Account instellingen
+              </h1>
+          </div>
+
+          <h4>Verander uw wachtwoord</h4>
+          <p>Vul uw oude en nieuwe wachtwoord hieronder in.<p>
+          <br/>
+          <form class="form-horizontal" action="/changepassword" method="post">
+              <div class="form-group">
+                <label class="control-label col-sm-3" for="email">Oude wachtwoord</label>
+                <div class="col-sm-9">
+                  <input name="oldpassword" type="password" class="form-control" id="password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-3" for="email">Nieuwe wachtwoord</label>
+                <div class="col-sm-9">
+                  <input name="newpassword" type="password" class="form-control" id="newpassword">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-3" for="email">Herhaal nieuwe wachtwoord</label>
+                <div class="col-sm-9">
+                  <input name="newpassword2" type="password" class="form-control" id="newpassword2">
+                </div>
+              </div>
+              <br/>
+              <button type="submit" class="btn btn-primary">Wijzig wachtwoord</button>
+          </form>
+
+          <br/>
+          <h4>Two factor authenticatie</h4>
+          <p>Two factor authenticatie maakt de beveiliging van uw gegevens een stuk veiliger. Naast uw
+            geheime wachtwoord beveiligt u uw gegevens met een aanvullende, steeds wisselende code.</p>
+
+          {% if current_user.otp_secret == '' %}
+            <p>Let op: De volgende keer dat u inlogt, kunt u niet meer inloggen met uw wachtwoord alleen. U moet daarom nog een aantal stappen zetten:
+              <ol>
+                <li>Installeer de app FreeOTP van Red Hat of Google Authenticator op uw telefoon</li>
+                <li>Enable Two Factor Authentication middels bovenstaande knop</li>
+                <li>Scan vervolgens de QR code voor u uitlogt</li>
+                <li>Bij uw volgende inlogpoging neemt u het Token over uit de app</li>
+              </ol>
+            </p>
+            <br/>
+            <a type="button" class="btn btn-primary" href="/enable2fa">Two factor authenticatie aanzetten</a>
+            <br/>
+            <br/>
+          {% else %}
+            <p>Scan de onderstaande QR tag met de FreetOTP app van Red Hat of de Authenticator app van Google.</p>
+            <p><img src="/qrcode"></img></p>
+            <br/>
+            <a type="button" class="btn btn-primary" href="/disable2fa">Two factor authenticatie uitzetten</a>
+            <br/>
+            <br/>
+          {% endif %}
+      </div>
+  </div>
+</div>
+{% endblock %}

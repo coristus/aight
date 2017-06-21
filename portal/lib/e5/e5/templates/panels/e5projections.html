@@ -1,0 +1,29 @@
+<div class="row">
+  {% for projection in state.projections %}
+    <div class="col-sm-3">
+        <div class="hero-widget well well-sm">
+            {% if 'duration' in projection.value %}
+            <div class="icon">
+                <i class="fa fa-clock-o"></i>
+            </div>
+            <div class="text">
+                <var>{{projection.value.duration}}</var>
+                <label class="text-muted">{{projection.id | humanize}}</label>
+            </div>
+            {% endif %}
+
+            {% if 'object' in projection.value %}
+            <div class="icon">
+                <i class="fa fa-line-chart"></i>
+            </div>
+            <div class="text">
+                {% for key in projection.value.object %}
+                <var>{{projection.value.object[key]}}</var>
+                {% endfor %}
+                <label class="text-muted">{{projection.id | humanize}}</label>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>

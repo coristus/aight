@@ -1,0 +1,37 @@
+{%extends "e5base.html"%}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-md-9">
+                <ol class="breadcrumb">
+                    {% for element in topics %}
+                    <li>
+                        <a href="/?topic={{loop.index0}}">{{element.topic}}</a>
+                    </li>
+                    {% endfor %}
+                    <li class="active">
+                        {{form.label}}
+                    </li>
+                </ol>
+
+                <div class="page-header">
+                    <h1>
+                        <i class="fa fa-pencil" aria-hidden="true"></i> {{form.label}}
+                        <!--  <small>{{topics[topics|length-1].kind}}</small>-->
+                    </h1>
+                </div>
+                <form>
+                {% for element in form.elements %}
+                  {% set path = element.getTemplate()%}
+                  {% with form=form, formdata = formdata, element=element %} {% include path %} {% endwith %}
+                {% endfor %}
+                <input type="submit" class="btn btn-primary" value="Versturen">
+              </form>
+            </div>
+            <div class="col-md-3">
+                <br/>
+            </div>
+        </div>
+    </div>
+{% endblock %}

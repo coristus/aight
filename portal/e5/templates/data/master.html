@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-{{state.icon}}" aria-hidden="true"></i>
+            &nbsp; {{state.label}}</h3>
+    </div>
+    <ul class="list-group">
+          {% for obj in state.objects %}
+            <li class="list-group-item">
+              <i class="fa fa-{{state.icon}}" aria-hidden="true"></i>&nbsp;
+              <a href="/panel/{{state.id}}?{{state.keycol}}={{obj[state.keycol]}}">{{ obj[state.labelcol] }}</a>
+              <p>
+                {% for projection in obj.projections %}
+                  {% for key in obj.projections[projection].object %}
+                    {{key | humanize}} : {{obj.projections[projection].object[key]}}
+                  {% endfor %}
+                {% endfor %}
+              </p>
+            </li>
+          {% endfor %}
+    </ul>
+</div>

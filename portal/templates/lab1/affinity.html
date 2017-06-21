@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+            &nbsp; Welke banen passen er bij mij?</h3>
+    </div>
+    {% if not 'prediction' in state %}
+        <div class="panel-body">
+            <center>
+                <p>Voor deze medewerker is er geen voorspelling beschikbaar.</p>
+            </center>
+        </div>
+    {% endif %}
+
+    {% if 'prediction' in state %}
+        <table class="table">
+            <tbody>
+                {% for key in state.prediction %}
+                    <tr>
+                        <td>
+                            <strong>{{key}}</strong>
+                        </td>
+                        <td>{{state.prediction[key] +"%"}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>

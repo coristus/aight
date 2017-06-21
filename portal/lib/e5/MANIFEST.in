@@ -1,0 +1,3 @@
+recursive-include e5/static *
+recursive-include e5/templates *
+include README.rst

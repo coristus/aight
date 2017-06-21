@@ -1,0 +1,14 @@
+<div class="form-group row">
+  <label for="{{element.id}}" class="col-sm-2 col-form-label">{{element.label}}</label>
+  <div class="col-sm-9">
+
+        <input type="range" id="{{element.id}}"
+          name="{{element.id}}" value="{{formdata[element.id]}}"
+          min="{{element.min_value}}" max="{{element.max_value}}" step="{{element.step}}"
+          oninput="document.getElementById('{{element.id+'.label'}}').innerHTML = this.value;"/>
+  </div>
+  <div class="col-sm-1">
+        <em id="{{element.id+'.label'}}">{{formdata[element.id]}}</em>
+  </div>
+  <script>document.getElementById('{{element.id+'.label'}}').innerHTML = document.getElementById('{{element.id}}').value;</script>
+</div>

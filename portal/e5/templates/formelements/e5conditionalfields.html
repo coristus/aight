@@ -1,0 +1,4 @@
+{% for elt in element.elements %}
+  {% set path = elt.getTemplate()%}
+  {% with form=form, formdata = formdata, element=elt %} {% include path %} {% endwith %}
+{% endfor %}

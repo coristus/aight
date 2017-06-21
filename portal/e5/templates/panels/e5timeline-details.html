@@ -1,0 +1,36 @@
+{% if 'feedback' in event.attributes %}
+<blockquote>&ldquo;{{event.attributes['feedback']}}&rdquo;</blockquote>
+{% endif %}
+
+{% if 'functie' in event.attributes %}
+<p><span class="label label-success"><strong>Functie:</strong> {{event.attributes['functie']}}</span></p>
+{% endif %}
+
+<!--  <table class="table">
+  <tbody>
+    {% for key in event.attributes %}
+    {% if key != 'functie' and key != 'feedback' %}
+    <tr><th>{{key|humanize}}</th><td>{{event.attributes[key]}}</td></tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table> -->
+
+<table class="table">
+  <tbody>
+  <tr>
+    {% for key in event.attributes %}
+    {% if key != 'functie' and key != 'feedback' %}
+    <th>{{key|humanize}}</th>
+    {% endif %}
+    {% endfor %}
+  </tr>
+  <tr>
+    {% for key in event.attributes %}
+    {% if key != 'functie' and key != 'feedback' %}
+    <td>{{event.attributes[key]}}</td>
+    {% endif %}
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-tag" aria-hidden="true"></i> &nbsp; Alle formulieren</h3>
+    </div>
+    <ul class="list-group">
+      {% for form in state.forms %}
+        <li class="list-group-item"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;<a href="/form/{{form.id}}">{{form.label}}</a></li>
+      {% endfor %}
+    </ul>
+</div>

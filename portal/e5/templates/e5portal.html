@@ -1,0 +1,33 @@
+
+{%extends "e5base.html"%}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-md-9">
+                <ol class="breadcrumb">
+                    {% for element in topics %} {% if not loop.last %}
+                    <li>
+                        <a href="/?topic={{loop.index0}}">{{element.topic}}</a>
+                    </li>
+                    {% endif %} {% if loop.last %}
+                    <li class="active">{{element.topic}}</li>
+                    {% endif %} {% endfor %}
+                </ol>
+
+                <div class="page-header">
+                    <h1>
+                        <i class="fa fa-{{topics[topics|length-1].kind}}" aria-hidden="true"></i> {{topics[topics|length-1].topic}}
+                        <!--  <small>{{topics[topics|length-1].kind}}</small>-->
+                    </h1>
+                </div>
+
+                {% for panel in mainpanels %} {% set path = panel.getTemplate()%} {% set topic = topics[topics | length - 1] %} {% with topic = topic, state = state[panel.id()] %} {% include path %} {% endwith %} {% endfor %}
+
+            </div>
+            <div class="col-md-3">
+                {% for panel in rightpanels %} {% set path = panel.getTemplate()%} {% set topic = topics[topics | length - 1] %} {% with topic = topic, state = state[panel.id()] %} {% include path %} {% endwith %} {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

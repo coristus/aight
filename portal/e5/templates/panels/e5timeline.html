@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp; Tijdslijn</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="timeline">
+
+            {% for event in state.events %}
+            <li class="timeline-inverted">
+                <div class="timeline-badge danger"><i class="fa fa-sign-out"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <a class="pull-right" href="javascript:remove('{{event.id}}')"><i class="glyphicon glyphicon-remove"></i></a>
+                        <h4 class="timeline-title">{{event.event_type}}</h4>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <time class="timeago" datetime="{{event.date}}"></time></small>
+                    </div>
+                    <div class="timeline-body">
+                        {% set eventindex=loop.index %} {% include state.details with context %}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<script>
+    var remove = function(event_id) {
+        $.ajax({
+            url: '/event/' + event_id,
+            type: 'DELETE',
+            success: function(result) {
+                location.reload();
+            }
+        });
+    };
+</script>

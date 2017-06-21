@@ -1,0 +1,32 @@
+<div class="form-group">
+  <label for="patient.toegeleiding">{{element.label}}</label>
+  <select class="form-control" name="{{element.id}}" id="{{element.id}}" ng-model="{{element.id}}" validate-on="dirty"
+  required-message="'{{element.label}} is een verplicht veld'">
+    <option value=""></option>
+    {% for (key, value) in element.choices | dictsort %}
+    <option value="{{key}}" {% if formdata[element.id] is equalto key %}selected{% endif %}  >{{value}}</option>
+    {% endfor %}
+  </select>
+  {% if element.poptext %}
+  <span id="helpBlock" class="help-block">Er is eventueel meer informatie beschikbaar over
+    <a data-toggle="modal" data-target="#{{element.id}}Modal">{{element.label}}</a>
+  </span>
+  {% endif %}
+</div>
+
+<div id="{{element.id}}Modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{element.label}}</h4>
+      </div>
+      <div class="modal-body">
+        {{element.popuptext | safe}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+      </div>
+    </div>
+  </div>
+</div>

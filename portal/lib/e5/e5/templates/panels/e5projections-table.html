@@ -1,0 +1,23 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-table" aria-hidden="true"></i>
+            &nbsp; Details </h3>
+    </div>
+
+    <table class="table">
+
+  {% for projection in state.projections %}
+            {% if 'duration' in projection.value %}
+            <tr><th>{{projection.id | humanize}}</th><td>{{projection.value.duration}}</td></tr>
+            {% endif %}
+
+            {% if 'object' in projection.value %}
+                {% for key in projection.value.object | sort %}
+                  <tr><th>{{key | humanize}}</th><td>{{projection.value.object[key]}}</td></tr>
+                {% endfor %}
+            {% endif %}
+    {% endfor %}
+  </table>
+</div>

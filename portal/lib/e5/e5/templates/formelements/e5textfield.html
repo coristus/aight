@@ -1,0 +1,35 @@
+<div class="form-group">
+  <label for="{{element.id}}">{{element.label}}</label>
+  <input ng-model="{{element.id}}"
+    class="form-control"
+    validate-on="dirty"
+    name="{{element.id}}"
+    id="{{element.id}}"
+    placeholder="{{element.label}}"
+    required-message="'{{element.label}} is een verplicht veld'"
+    value="{{formdata[element.id]}}"
+    {% if element.mandatory %}required{% endif %}
+    >
+    {% if element.poptext %}
+    <span id="helpBlock" class="help-block">Er is eventueel meer informatie beschikbaar over
+      <a data-toggle="modal" data-target="#{{element.id}}Modal">{{element.label}}</a>
+    </span>
+    {% endif %}
+</div>
+
+<div id="{{element.id}}Modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{element.label}}</h4>
+      </div>
+      <div class="modal-body">
+        {{element.popuptext | safe}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+      </div>
+    </div>
+  </div>
+</div>
