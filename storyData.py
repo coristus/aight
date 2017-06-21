@@ -84,25 +84,32 @@ def fillStoryIq(label, labels, data):
 # generates data with normal distribution of known points
 # returns an array of numpy arrays per category with generated to #datapoints
 def categoryDataMaker(label, labels, array, datapoints):
-    makerArray = []
-    for cat in array:
-        if cat.shape[0] < datapoints:
-            rowsize = cat.shape[1]
-            labelpos = np.where(labels == label)
-            labelcat = cat[0,labelpos[0][0]]
-            newcat = np.zeros((datapoints, cat.shape[1]))
-            newcat.fill(-1)
-            newcat[0:cat.shape[0],:] = cat
-            newcat[:,labelpos[0][0]] = labelcat
-            mus = cat[:,11:].mean()
-            sigmas = cat[:,11:].std()
-            for i in range(cat.shape[0], datapoints - cat.shape[0]):
-                newRow = np.random.normal(mus, sigmas, rowsize)
-                newcat[i,11:] = newRow
-        else:
-            newcat = cat[:100,:]
-        makerArray.append(newcat)
-    return np.array(makerArray)
+	makerArray = []
+	for cat in array:
+		if cat.shape[0] < datapoints:
+			labelpos = np.where(labels == label)
+			labelcat = cat[0,labelpos[0][0]]
+			newcat = np.zeros((datapoints, cat.shape[1]))
+			newcat.fill(-1)
+			newcat[0:cat.shape[0],:] = cat
+			newcat[:,labelpos[0][0]] = labelcat
+			mus = cat[:,11:].mean(0)
+			mus1 = mus[:20]
+			mus2 = mus[20:]
+			sigmas = cat[:,11:].std(0)
+			sigmas1 = sigmas[:20]
+			sigmas2 = sigmas[20:]
+			for i in range(cat.shape[0], datapoints - cat.shape[0]):
+				new1 = np.random.normal(mus1, sigmas1, len(mus1))
+				new2 = np.random.normal(mus2, sigmas2, len(mus2))
+				newRow = np.concatenate((new1, new2,), 0)
+				newcat[i,11:] = newRow
+		else:
+			newcat = cat[:100,:]
+
+		makerArray.append(newcat)
+
+	return np.array(makerArray)
 
 
 ## NEEDS DEBUG
