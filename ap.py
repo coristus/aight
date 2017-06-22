@@ -16,10 +16,10 @@ def optimSupport(max_profiles, min_dim, min_sup, delta, featureset):
 	return min_sup
 
 labels, data = sd.getCatData()
-# data[:,11:] = discretise.uniqueDiscreteFeatures(data[:,11:])
+data[:,11:] = discretise.uniqueDiscreteFeatures(data[:,11:])
 
-# sup = optimSupport(10, 4, .129, .0001, data[:,11:])
-# print sup
+sup = optimSupport(10, 4, .129, .0001, data[:,11:])
+print sup
 
-# results = apriori(data[:,11:], min_support=0.1291)
-# print pd.DataFrame(map(lambda x: (x.items, x.support), filter(lambda u : len(u.items)>3, results)))
+results = apriori(data[:,11:], min_support=0.1291)
+print pd.DataFrame(map(lambda x: (x.items, x.support), filter(lambda u : len(u.items)>3, results)))

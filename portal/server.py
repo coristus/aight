@@ -21,7 +21,7 @@ blueprint = Blueprint(
 app.register_blueprint(blueprint)
 
 portal.title = "HR Analytics Lab"
-portal.logo = "/static/pi/logo.png" 
+portal.logo = "/static/pi/logo.png"
 
 
 employees_context_panel_home = ContextListPanel(event_stream, "medewerker", "medewerkers", "naam", "user", "home", "main", "medewerkers")
@@ -62,14 +62,12 @@ extendedFacets = ['T_Invloed', 'T_Prestatie', 'T_Welvaart', 'T_Plezier',
 
 affinity_data = PandasDataService("../data/lab1/Ontwikkelbaarheid competenties.csv", ",", None)
 
-affinity_predictor = AffinityScoringAlgorithm('affinityvoorspeller')
-affinity_predictor.configure({'trainingData': affinity_data})
-portal.registerAlgorithm(affinity_predictor)
-
-affinity_algorithm_projection = AffinityAlgorithmProjection("affinityVoorspellerProjection", extendedFacets, affinity_predictor)
-event_stream.register_projection(affinity_algorithm_projection)
-
-portal.registerPanel(AffinityPrediction(event_stream, affinity_algorithm_projection))
+affinity_predictor1 = AffinityScoringAlgorithm('affinityvoorspeller')
+affinity_predictor1.configure({'trainingData': affinity_data})
+portal.registerAlgorithm(affinity_predictor1)
+affinity_algorithm_projection1 = AffinityAlgorithmProjection("affinityVoorspellerProjection", extendedFacets, affinity_predictor1)
+event_stream.register_projection(affinity_algorithm_projection1)
+portal.registerPanel(AffinityPrediction(event_stream, affinity_algorithm_projection1))
 
 app.run(host='0.0.0.0')
 #- cache content en tijd aware

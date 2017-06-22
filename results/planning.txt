@@ -1,0 +1,19 @@
+* downsampling
+* kleine kolommen afsplietsen
+* target: leidinggeven + span of control
+* teruggeven aantal leidinggevenden.
+* continu resultaat - > geen categorie
+* wegzetten naar gokken op hoogste drie
+* gebalanceerd testen !~
+* confusion matrix + percentage
+
+* vergelijken van modellen getraind op generated data, real data en
+----* verwijderen targets met te weinig voorbeelden.
+* rapportage van geprobeerde strategieen
+
+
+* standaard profiel(en) teruggeven voor een categorie.
+
+* isco08_1 -> isco08_2 binnen deze de subcategorieen trainen.
+
+

@@ -20,13 +20,11 @@ for y_pred_test in outlier_predictions_per_cat:
         outliers = np.where(y_pred_test <= k)
         K_outliers.append(len(outliers[0])/float(y_pred_test.shape[0])*100)
 
-    pl.subplot(2,2,i+1)
+    pl.subplot(2,3,i+1)
     pl.plot(range(MIN_SCORE,MAX_SCORE,1), K_outliers,'r.')
     pl.title('Job category ' + str(i) + ' Subjects: ' + str(y_pred_test.shape[0]))
-
-    pl.xlabel('Outlier Accumulator')
     pl.ylabel('Percentage of Outliers')
-    pl.ylim((0,60))
+    pl.ylim((0,70))
     i+=1
-    if i == 4: break
+    if i == 6: break
 pl.show()

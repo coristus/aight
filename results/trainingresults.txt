@@ -1,0 +1,16 @@
+Epoch 200/200
+3696/3696 [==============================] - 0s - loss: 0.9773 - mean_absolute_error: 0.0973 - categorical_accuracy: 0.6258  
+512-relu-.3/512-relu-.3/512-relu-.3
+cat cross entro, adadelta
+
+ 
+Epoch 400/400
+3696/3696 [==============================] - 0s - loss: 0.5567 - mean_absolute_error: 0.0579 - categorical_accuracy: 0.7965 
+512-relu-.3/512-relu-.3
+cat cross entro, adadelta
+
+
+deapstandard h5
+best three performance
+68.505299589
+

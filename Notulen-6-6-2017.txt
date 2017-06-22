@@ -1,0 +1,42 @@
+﻿Meeting 1 Pi Company project 2.
+
+Assignment specifics.
+
+Why is this assignment interesting?
+3 psychological concepts
+intelligence, motives, personalities.
+Previously unrelated..
+research shows this is better combined.
+* key skills per function.
+(how do you measure succes?)
+* clustering,
+* 24 features per person 12 personality.
+* Longlist chance for succes. (not really in scope)
+* Patterns of persons in certain job positions.
+* isco systematic… Function description is categorized.
+
+First… personal profiles: Jobs and clusters. 
+
+Data Example:
+Intelligence:
+Conncector Ability – Bsc norm, or Msc norm.
+G-Factor:
+
+Personality:
+Big Five:
+25 values (1 not made)
+also T values.
+
+Motivation:
+Refloctor Drives.
+What do they find important. 
+
+Presentation of information as plain as possible.
+
+* unsupervised learning
+K-Means: long discussion over the amount of clusters. 
+* what is optimal K?
+
+Contextual results..:
+- Branche patterns
+- Functions

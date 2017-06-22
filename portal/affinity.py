@@ -11,22 +11,22 @@ import numpy as np
 
 class AffinityScoringAlgorithm(Algorithm):
     def __init__(self, id):
-        self.id = id
+		self.id = id
         #selfs
 
     def getId(self):
         return self.id
 
     def predict(self, datapoints):
-        prediction, algoDescription = apa.getAffinity(2, datapoints)
-        predictionDict = dictify(prediction)
+        prediction, algoDescription = apa.getAffinity(datapoints)
+        predictionDict = self.dictify(prediction)
 
         # get the top five affinities to display in the panel
         affinities = {}
         values = list(predictionDict.values())
         keys = list(predictionDict.keys())
         for _ in range(5):
-            maxIndex = v.index(max(v))
+            maxIndex = values.index(max(values))
             affinities[keys[maxIndex]] = str(values[maxIndex])
             del values[maxIndex]
             del keys[maxIndex]
@@ -54,14 +54,14 @@ class AffinityScoringAlgorithm(Algorithm):
     def __getScore(self, value):
         return
 
-    def dictify(values):
+    def dictify(self, values):
         diction = {}
         branches = ['Beroepen bij de strijdkrachten','Leidinggevende functies',
-        'Intellectuele, wetenschappelijke en artistieke beroepen', 
+        'Intellectuele, wetenschappelijke en artistieke beroepen',
         'Technici en vakspecialisten', 'Administratief personeel',
         'Dienstverlenend personeel en verkopers',
-        'Geschoolde landbouwers, bosbouwers en vissers', 
-        'Ambachtslieden','Bedieningspersoneel van machines en installaties, assembleurs', 
+        'Geschoolde landbouwers, bosbouwers en vissers',
+        'Ambachtslieden','Bedieningspersoneel van machines en installaties, assembleurs',
         'Elementaire beroepen']
         for i in range(0,len(values)):
             diction[branches[i]] = values[i]

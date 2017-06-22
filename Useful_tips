@@ -1,0 +1,4 @@
+Important stuff:
+DON;T TRAIN RNNS WITH SGD:
+Use RMSprop!!!!
+

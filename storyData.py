@@ -2,6 +2,7 @@ import numpy as np
 import decimal
 import sortByLabel as sbl
 import generateData as gd
+from sklearn.ensemble import IsolationForest as skiso
 
 STORYDATAPATH = 'story/storyData.npy'
 LABELPATH = 'full/labelsFull.npy'
@@ -11,10 +12,10 @@ CLEANSUBDATAPATH = 'full/cleanDataSub.npy'
 
 DATAFILE = 'full/RBFP-RDrives-CA dataset DEF.csv'
 DELIMITER = ';'
-
-seed = 21
-np.random.seed(seed)
-
+# 
+# seed = 42
+# np.random.seed(seed)
+rng = np.random.RandomState()
 
 # clean takes an element, parses it for float castability,
 # and returns the correct float value to be inserted
@@ -93,23 +94,131 @@ def categoryDataMaker(label, labels, array, datapoints):
 			newcat.fill(-1)
 			newcat[0:cat.shape[0],:] = cat
 			newcat[:,labelpos[0][0]] = labelcat
-			mus = cat[:,11:].mean(0)
+			mus = cat[:,10:].mean(0)
 			mus1 = mus[:20]
 			mus2 = mus[20:]
-			sigmas = cat[:,11:].std(0)
+			sigmas = cat[:,10:].std(0)
 			sigmas1 = sigmas[:20]
 			sigmas2 = sigmas[20:]
 			for i in range(cat.shape[0], datapoints - cat.shape[0]):
 				new1 = np.random.normal(mus1, sigmas1, len(mus1))
 				new2 = np.random.normal(mus2, sigmas2, len(mus2))
 				newRow = np.concatenate((new1, new2,), 0)
-				newcat[i,11:] = newRow
+				newcat[i,10:] = newRow
+				newcat[i,0] = -2
 		else:
-			newcat = cat[:100,:]
+			newcat = cat[:datapoints,:]
 
 		makerArray.append(newcat)
 
 	return np.array(makerArray)
+
+
+def fakeDataMaker(label, labels, array, datapoints):
+	makerArray = []
+	for cat in array:
+		if cat.shape[0]:
+			labelpos = np.where(labels == label)
+			labelcat = cat[0,labelpos[0][0]]
+			newcat = np.zeros((datapoints, cat.shape[1]))
+			newcat.fill(-1)
+			newcat[:,labelpos[0][0]] = labelcat
+			newcat[:,0] = -2
+			mus = cat[:,10:].mean(0)
+			mus1 = mus[:20]
+			mus2 = mus[20:]
+			sigmas = cat[:,10:].std(0)
+			sigmas1 = sigmas[:20]
+			sigmas2 = sigmas[20:]
+			for i in range(datapoints):
+				new1 = np.random.normal(mus1, sigmas1, len(mus1))
+				new2 = np.random.normal(mus2, sigmas2, len(mus2))
+				newRow = np.concatenate((new1, new2,), 0)
+				newcat[i,10:] = newRow
+			makerArray.append(newcat)
+		else:
+			continue
+	return np.array(makerArray)
+
+
+# data maker per column. finds outliers per column
+def inlierDataMaker(label, labels, array, datapoints, strength):
+	makerArray = []
+	for cat in array:
+		labelpos = np.where(labels == label)
+		labelcat = cat[0,labelpos[0][0]]
+		newcat = np.zeros((datapoints, cat.shape[1]))
+		newcat.fill(-1)
+		newcat[:,labelpos[0][0]] = labelcat
+		newcat[:,0] = -2
+		mus = cat[:,11:].mean(0)
+		sigmas = cat[:,11:].std(0)
+		idxHigh = np.where(cat[:,11:] > mus+strength*sigmas)[0]
+		idxLow = np.where(cat[:,11:] < mus-strength*sigmas)[0]
+ 		deleteIdx = np.union1d(idxHigh, idxLow)
+		cleanCat = np.delete(cat, deleteIdx, 0)
+		cleanMus = cleanCat[:,11:].mean(0)
+		cleanSigmas = cleanCat[:,11:].std(0)
+		mus1 = cleanMus[:20]
+		mus2 = cleanMus[20:]
+		sigmas1 = cleanSigmas[:20]
+		sigmas2 = cleanSigmas[20:]
+		for i in range(datapoints):
+			new1 = np.random.normal(mus1, sigmas1, len(mus1))
+			new2 = np.random.normal(mus2, sigmas2, len(mus2))
+			newRow = np.concatenate((new1, new2,), 0)
+			newcat[i,11:] = newRow
+		makerArray.append(newcat)
+	return np.array(makerArray)
+
+
+def standardDataMaker(label, labels, array, datapoints, strength):
+	makerArray = []
+	for cat in array:
+		labelpos = np.where(labels == label)
+		labelcat = cat[0,labelpos[0][0]]
+		newcat = np.zeros((datapoints, cat.shape[1]))
+		newcat.fill(-1)
+		newcat[:,labelpos[0][0]] = labelcat
+		newcat[:,0] = -2
+		colMus = []
+		colSigs = []
+		for j in range(11, cat.shape[1]):
+			colMu = cat[:,j].mean(0)
+			colSig = cat[:,j].std(0)
+			idxHigh = np.where(cat[:,j:] > colMu+strength*colSig)[0]
+			idxLow = np.where(cat[:,j:] < colMu-strength*colSig)[0]
+			deleteIdx = np.union1d(idxHigh, idxLow)
+			cleanCol = np.delete(cat[:,j], deleteIdx, 0)
+			mu = cleanCol.mean(0)
+			sigma = cleanCol.std(0)
+			colMus.append(mu)
+			colSigs.append(sigma)
+		for i in range(datapoints):
+			mus1 = np.array(colMus)[:20]
+			mus2 = np.array(colMus)[20:]
+			sigmas1 = colSigs[:20]
+			sigmas2 = colSigs[20:]
+			new1 = np.random.normal(mus1, sigmas1, len(mus1))
+			new2 = np.random.normal(mus2, sigmas2, len(mus2))
+			newRow = np.concatenate((new1, new2,), 0)
+			newcat[i,11:] = newRow
+		makerArray.append(newcat)
+	return np.array(makerArray)
+
+def isoDataMaker(catArrays):
+	dataSet = []
+	for X in catArrays:
+		np.random.shuffle(X)
+		clf = skiso(n_estimators=20, random_state=rng, n_jobs=-1)
+		clf.fit(X)
+		predicted = clf.predict(X)
+		abnormal = X[predicted == -1]
+		normal = X[predicted == 1]
+		dataSet.append(normal)
+	return np.array(dataSet)
+
+
 
 
 ## NEEDS DEBUG
@@ -122,8 +231,8 @@ def fillEmptyWithCategorieColumnDistribution(label, labels, data):
     storyArray = []
     # for non categorical columns use addSample
     for cat in catArrays:
-        categories = cat[:,0:11]
-        testresults = cat[:,11:]
+        categories = cat[:,0:10]
+        testresults = cat[:,10:]
         rows, cols = testresults.shape
         storyData = testresults
         indexes = np.where(testresults == -1)
@@ -158,4 +267,4 @@ def construcDataFromArray(array):
 
 
 
-# [20:30,11:]
+# [20:30,10:]

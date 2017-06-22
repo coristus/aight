@@ -25,16 +25,35 @@ import generateData as gd
 
 
 def splitForStory(label, labels, data):
-    returnArray = []
-    returnArrayLabels = []
-    index = np.where(labels == label)
-    categories = set(data[:,index[0]].flatten())
-    # Create a numpy array per job category (ISCO08_1) and save as array
-    for category in categories:
-        select = np.where(data[:,index[0][0]] == category)
-        returnArrayLabels.append(category)
-        returnArray.append(data[select[0]])
-    return np.array(returnArray), returnArrayLabels
+	returnArray = []
+	returnArrayLabels = []
+	index = np.where(labels == label)
+	categories = set(data[:,index[0]].flatten())
+	# Create a numpy array per job category (ISCO08_1) and save as array
+	for category in categories:
+		select = np.where(data[:,index[0][0]] == category)
+		returnArrayLabels.append(category)
+		returnArray.append(data[select[0]])
+	return np.array(returnArray), returnArrayLabels
+
+
+def splitNoEmptyStory(label, labels, data):
+	returnArray = []
+	returnArrayLabels = []
+	index = np.where(labels == label)
+	categories = set(data[:,index[0]].flatten())
+	print categories
+	# Create a numpy array per job category (ISCO08_1) and save as array
+	for category in categories:
+		select = np.where(data[:,index][0] == category)
+		print data[select[0]]
+		if data[select[0]].shape[0]:
+			returnArrayLabels.append(category)
+			returnArray.append(data[select[0]])
+		else:
+			continue
+	return np.array(returnArray), returnArrayLabels
+
 
 
 ## Input a list of selected labels and dataset to work on
